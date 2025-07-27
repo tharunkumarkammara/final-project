@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5500/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="file"] {
+      margin-top: 5px;
+    }
+
+    .gender {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .terms {
+      margin-top: 15px;
+    }
+
+    .strength {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .strength.weak {
+      color: red;
+    }
+
+    .strength.medium {
+      color: orange;
+    }
+
+    .strength.strong {
+      color: green;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background-color: #28a745;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>User Registration</h2>
+    <form>
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" placeholder="First Name Last Name" required="">
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" required="">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" oninput="checkStrength()" required="">
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" required="">
+
+      <div id="strength" class="strength"></div>
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" required="">
+
+      <label>Gender</label>
+      <div class="gender">
+        <label><input type="radio" name="gender" value="Male" required=""> Male</label>
+        <label><input type="radio" name="gender" value="Female"> Female</label>
+        <label><input type="radio" name="gender" value="Other"> Other</label>
+      </div>
+
+      <label for="profilePic">Profile Picture</label>
+      <input type="file" id="profilePic" accept="image/*">
+
+      <div class="terms">
+        <label><input type="checkbox" required=""> I agree to the Terms and Conditions</label>
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    function checkStrength() {
+      const strengthBar = document.getElementById('strength');
+      const password = document.getElementById('password').value;
+
+      let strength = 'weak';
+      let strengthClass = 'weak';
+
+      if (password.length > 7 && /[A-Z]/.test(password) && /[0-9]/.test(password)) {
+        strength = 'strong';
+        strengthClass = 'strong';
+      } else if (password.length > 5) {
+        strength = 'medium';
+        strengthClass = 'medium';
+      }
+
+      strengthBar.textContent = Password Strength: ${strength};
+      strengthBar.className = strength ${strengthClass};
+    }
+  </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>
